@@ -1,0 +1,71 @@
+<div class = "container">
+   <div class = "row">
+      <% if flash[:notice] %>
+        <div class = "flash">
+          <%= flash[:notice]%>
+        </div>
+      <%end%>
+  	    <div class = "col-xs-3">
+          <!--ユーザー情報表示-->
+          <h1>User info</h1>
+          <table class = "table">
+            <thead>
+              <tr>
+                <th>name</th>
+                <td><%= @book.user.name%></td>
+              </tr>
+              <tr>
+                <th>introduction</th>
+                <td><%= @book.user.introduction%></td>
+            </thead>
+          </table>
+          <!--ここまで-->
+            <%= link_to edit_user_path(@book.user), :method => :get do %>
+              <i class = "glyphicon glyphicon-wrench aria-hidden=true btn btn-default col-md-12"></i>
+            <%end%>
+
+  	       <h2>New book</h2>
+           <!--新規投稿フォーム-->
+              <%= form_for(@book_new) do |f| %>
+                  <div class = "form-group">
+                   <%= f.label :title, 'Title'%>
+                   <%= f.text_field :title, class:'form-control col-md-12' %>
+                  </div>
+                  <div class = "form-group">
+                   <%= f.label :body, 'Opinion'%>
+                   <%= f.text_area :body, class:'form-control col-md-12' %>
+                  </div>
+                   <%= f.submit"Create Book", class:"btn btn-primary col-md-12"%>
+              <%end%>
+        <!--投稿フォーム-->
+        </div>
+  	    <div class = "col-xs-9">
+          <h1>Book detail</h1>
+  	        <table class = "table table-hover">
+              <thead>
+  	            <tr>
+                  <th></th>
+  	              <th>Title</th>
+  	              <th>Opinion</th>
+                  <th></th>
+                  <th></th>
+  	            </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      <%= attachment_image_tag @book.user, :profile_image, :fill,60,60, format:'jpeg', class:"profile_img", fallback:"no_image.jpg",size:'40x40' %><br>
+                      <%= link_to @book.user.name, user_path(@book.user.id) %>
+                    </td>
+                    <td><%= @book.title %></td>
+                    <td><%= @book.body %></td>
+                    <% if @book.user == current_user %>
+                      <td><%= link_to"Edit", edit_book_path(@book.id), class:"btn btn-success" %></td>
+                      <td><%= link_to"Destroy", book_path(@book.id), class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか?" %></td>
+                    <%end%>
+                  </tr>
+              </tbody>
+  	        </table>
+  	    </div>
+    </div>
+</div>
