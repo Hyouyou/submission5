@@ -60,6 +60,30 @@
                     </td>
                     <td><%= @book.title %></td>
                     <td><%= @book.body %></td>
+
+                    <!--いいね機能-->
+                    <td>
+                      <% if @book.favorited_by?(current_user) %>
+                        <li>
+                            <%= link_to book_favorites_path(@book.id), method: :delete do %>
+                            <i class="far fa-heart" aria-hidden="true" style="color: red;"></i>
+                            <%= @book.favorites.count %>
+                            <% end %>
+                        </li>
+                      <% else %>
+                        <li>
+                            <%= link_to book_favorites_path(@book.id), method: :post do %>
+                            <i class="far fa-heart" aria-hidden="true"></i>
+                            <%= @book.favorites.count %>
+                            <% end %>
+                        </li>
+                      <% end %>
+                      <!--ここまで-->
+                    </td>
+                    <!--ここまで-->
+
+                    <td>カウント数:<%= @book.book_comments.count %></td>
+
                     <% if @book.user == current_user %>
                       <td><%= link_to"Edit", edit_book_path(@book.id), class:"btn btn-success" %></td>
                       <td><%= link_to"Destroy", book_path(@book.id), class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか?" %></td>

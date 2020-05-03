@@ -14,6 +14,9 @@
  *= require_self
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -34,6 +37,7 @@ padding-right:60px;
 
 li{
 margin:0 5px;
+list-style:none;
 }
 
 .actions{
