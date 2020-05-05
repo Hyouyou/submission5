@@ -12,7 +12,7 @@
             <div class = "user-image">
               <%= attachment_image_tag @user, :profile_image, :fill,60,60, format:'jpeg', class:"profile_img", fallback:"no_image.jpg",size:'100x100' %>
             </div>
-          <!--↑うまく行ってない-->
+
           <table class = "table table-hover">
             <thead>
               <tr>
@@ -25,9 +25,17 @@
             </thead>
           </table>
           <div class = "row">
-            <%= link_to edit_user_path(@user), :method => :get do %>
-              <i class = "glyphicon glyphicon-wrench aria-hidden=true btn btn-default col-md-12"></i>
-            <%end%>
+            <div class="col-xs-12">
+              <%= link_to edit_user_path(@user), :method => :get do %>
+                <i class = "glyphicon glyphicon-wrench aria-hidden=true btn btn-default col-md-12"></i>
+              <%end%>
+            </div>
+
+            <!--フォロー機能-->
+            <div class="col-xs-8">
+              <%= render 'relationships/follow_bottun', user: @user %>
+            </div>
+            <!--パーシャル利用-->
           </div>
           <!--ここまで-->
 
