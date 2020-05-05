@@ -31,6 +31,16 @@ before_action :authenticate_user!
     end
   end
 
+  def follow
+    @user = User.find(params[:id])
+    @follow_users = @user.followings
+  end
+
+  def follower
+    @user = User.find(params[:id])
+    @follower_users = @user.followers
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)

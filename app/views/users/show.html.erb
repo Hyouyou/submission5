@@ -9,21 +9,10 @@
           <!--ユーザー情報表示-->
           <h1>User info</h1>
           <!--profile画像を埋め込み-->
-            <div class = "user-image">
-              <%= attachment_image_tag @user, :profile_image, :fill,60,60, format:'jpeg', class:"profile_img", fallback:"no_image.jpg",size:'100x100' %>
-            </div>
+          <!--ユーザー情報もろもろ-->
+          <%= render 'users/sidetable' %>
+          <!---->
 
-          <table class = "table table-hover">
-            <thead>
-              <tr>
-                <th>name</th>
-                <td><%= @user.name%></td>
-              </tr>
-              <tr>
-                <th>introduction</th>
-                <td><%= @user.introduction %></td>
-            </thead>
-          </table>
           <div class = "row">
             <div class="col-xs-12">
               <%= link_to edit_user_path(@user), :method => :get do %>

@@ -9,18 +9,10 @@
   	    <div class = "col-xs-3">
           <!--ユーザー情報表示-->
           <h1>User info</h1>
-          <table class = "table">
-            <thead>
-              <tr>
-                <%= attachment_image_tag @user, :profile_image, :fill,60,60, format:'jpeg', class:"profile_img", fallback:"no_image.jpg",size:'100x100' %>
-                <th>name</th>
-                <td><%= @user.name%></td>
-              </tr>
-              <tr>
-                <th>introduction</th>
-                <td><%= @user.introduction%></td>
-            </thead>
-          </table>
+          <!--ユーザー情報もろもろ-->
+          <%= render 'users/sidetable' %>
+          <!---->
+
           <!--ここまで-->
           <div class = "row">
             <% if @user.id == current_user.id %>

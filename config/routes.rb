@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :users, only:[:show, :edit, :index, :update,]
   root 'homes#top'
   get'home/about' => 'homes#about'
+  get'users/:id/follow' => 'users#follow', as:'follow'
+  get'users/:id/follower' => 'users#follower', as:'follower'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

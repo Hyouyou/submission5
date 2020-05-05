@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 2020_05_05_063714) do
   create_table "relationships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "follow_id"
+    #上記の2行はreferencesでmigration。indexの貼り付けと_idのついたかラムが自動生成される
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
     t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
+    #uniqueは一意性の制約、異なるテーブル間で特定のカラムを参照できる?
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 

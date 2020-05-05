@@ -1,0 +1,30 @@
+<div class="user-image">
+  <%= attachment_image_tag @user, :profile_image, :fill,60,60, format:'jpeg', class:"profile_img", fallback:"no_image.jpg",size:'100x100' %>
+</div>
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th>name</th>
+      <td><%= @user.name%></td>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <td><%= @user.introduction %></td>
+    </tr>
+    <tr>
+      <th>follows</th>
+      <td>
+        <%= link_to follow_path(@user), :method => :get do %>
+          <%= @user.followings.count %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <th>follower</th>
+      <td>
+        <%= link_to follower_path(@user), :method => :get do %>
+          <%= @user.followers.count %>
+        <% end %>
+      </td>
+    </tr>
+  </thead>
+</table>

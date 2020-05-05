@@ -15,8 +15,12 @@ class User < ApplicationRecord
   #フォロー機能
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
+  #through:sourceとセットのこと多い。多対多で中間テーブルが複数ある場合、throughオプションで中間テーブルを指定すれば、経路を決めることができる。
+  #source:class_nameとほぼ同じらしい。throughを使うような中間テーブルがある場合はsource。一対多のような中間テーブルを使わない場合はclass_nameらしい。
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
-  has_many :followers, through: :reverse_of_relationship, source: :user
+  #class_name:一つのモデルに対して二つのアソシエーション経路を組む場合に多用
+  #foreign_key:難しい
+  has_many :followers, through: :reverse_of_relationships, source: :user
 
   def follow(other_user)
     unless self == other_user
