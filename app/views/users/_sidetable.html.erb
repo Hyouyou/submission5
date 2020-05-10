@@ -1,11 +1,12 @@
 <div class="user-image">
   <%= attachment_image_tag @user, :profile_image, :fill,60,60, format:'jpeg', class:"profile_img", fallback:"no_image.jpg",size:'100x100' %>
 </div>
+
 <table class = "table table-hover">
   <thead>
     <tr>
       <th>name</th>
-      <td><%= @user.name%></td>
+      <td><%= @user.name %></td>
     </tr>
     <tr>
       <th>introduction</th>

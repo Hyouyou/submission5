@@ -1,7 +1,9 @@
 class RelationshipsController < ApplicationController
 
 	def create
+		#linkの時に使う方、メンターさんに教えてもらったやつ
 		@user = User.find(params[:id])
+		#formの時にネットから引っ張ってきたやつ
 		#@user = User.find(params[:relationship][:follow_id])
 		following = current_user.follow(@user)
 		if following.save
@@ -14,7 +16,8 @@ class RelationshipsController < ApplicationController
 	end
 
 	def destroy
-		follow_id = current_user.relationships.find_by(params[:relationship]).follow_id
+		#linkの時の、メンターさんに教えてもっらたやつ
+		follow_id = current_user.relationships.find_by(params[:id]).follow_id
 		@user = User.find(follow_id)
 		following = current_user.unfollow(@user)
 		if following.destroy

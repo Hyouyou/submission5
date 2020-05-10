@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @comment = BookComment.new
     @book_new = Book.new
-    #応急処置しただけ、後で変えないといけない
+    @user = @book.user
   end
 
   def create
@@ -47,11 +47,10 @@ class BooksController < ApplicationController
   end
 
   def index
-    @book_new = Book.new
     @book =Book.new
     @user = current_user
     @users = User.all
-    @books = Book.all
+    @books = Book.page(params[:page]).reverse_order
   end
 
   private

@@ -15,32 +15,14 @@
 
           <!--ここまで-->
           <div class = "row">
-            <% if @user.id == current_user.id %>
-              <%= link_to edit_user_path(@user), :method => :get do %>
-                <i class = "glyphicon glyphicon-wrench aria-hidden=true btn btn-default col-md-12"></i>
-              <%end%>
-            <%end%>
-            <!--フォロー機能-->
-            <%= render 'relationships/follow_bottun', user: @user %>
+            <!--フォロー・button機能-->
+            <%= render 'relationships/follow_button', user: @user %>
             <!--パーシャル利用-->
           </div>
 
   	       <h2>New book</h2>
            <!--新規投稿フォーム-->
-              <%= form_for(@book_new) do |f| %>
-                  <div class = "form-group row">
-                   <%= f.label :title, 'Title'%>
-                   <%= f.text_field :title, class:'form-control col-md-12' %>
-                  </div>
-                  <div class = "form-group row">
-                   <%= f.label :body, 'Opinion'%>
-                   <%= f.text_area :body, class:'form-control col-md-12' %>
-                  </div>
-                  <div class = "row">
-                   <%= f.submit"Create Book", class:"btn btn-primary col-md-12"%>
-                  </div>
-              <%end%>
-        <!--投稿フォーム-->
+           <%= render 'books/newbook', book: @book %>
         </div>
   	    <div class = "col-xs-9">
           <h1>Books</h1>
@@ -86,6 +68,7 @@
                     <td>コメント数:<%= book.book_comments.count %></td>
                   </tr>
                 <%end%>
+                <%= paginate @books, class:"paginate" %>
               </tbody>
   	        </table>
   	    </div>

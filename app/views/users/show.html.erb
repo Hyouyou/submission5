@@ -14,36 +14,15 @@
           <!---->
 
           <div class = "row">
-            <div class="col-xs-12">
-              <%= link_to edit_user_path(@user), :method => :get do %>
-                <i class = "glyphicon glyphicon-wrench aria-hidden=true btn btn-default col-md-12"></i>
-              <%end%>
-            </div>
-
-            <!--フォロー機能-->
-            <div class="col-xs-8">
-              <%= render 'relationships/follow_bottun', user: @user %>
-            </div>
+            <!--フォロー機能,editへのbutton-->
+              <%= render 'relationships/follow_button', user: @user %>
             <!--パーシャル利用-->
           </div>
           <!--ここまで-->
 
   	      <h2>New book</h2>
            <!--新規投稿フォーム-->
-              <%= form_for(@book) do |f| %>
-                <div class = "form-group row">
-                  <%= f.label 'Title'%>
-                  <%= f.text_field :title, class:'form-control col-md-12' %>
-                </div>
-                <div class = "form-group row">
-                  <%= f.label 'Opinion'%>
-                  <%= f.text_area :body, class:'form-control col-md-12' %>
-                </div>
-                <div class = "action row">
-                  <%= f.submit"Create Book", class:"btn btn-primary col-md-12"%>
-                </div>
-              <%end%>
-        <!--投稿フォーム-->
+           <%= render 'books/newbook', book: @book %>
         </div>
         <!--current_userの投稿一覧-->
         <div class = "col-xs-9">
