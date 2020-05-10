@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get'home/about' => 'homes#about'
   get'users/:id/follow' => 'users#follow', as:'follow'
   get'users/:id/follower' => 'users#follower', as:'follower'
+  get 'search' => 'searchs#search', as:'search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

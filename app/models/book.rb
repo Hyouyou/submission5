@@ -12,4 +12,19 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
+  #検索機能
+  def Book.search(term, how_search)
+    if how_search == "perfect"
+      Book.where(title: term)
+    elsif how_search == "front"
+      Book.where(['title LIKE ?', "#{term}%"])
+    elsif how_search == "back"
+      Book.where(['title LIKE ?', "%#{term}"])
+    elsif how_search == "part"
+      Book.where(['title LIKE ?', "%#{term}%"])
+    else
+      Book.all
+    end
+  end
+  #
 end

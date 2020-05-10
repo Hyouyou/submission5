@@ -36,4 +36,20 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+
+  #検索機能でselectの時に記述
+  def User.search(term, how_search)
+    if how_search == "perfect"
+      User.where(name: term)
+    elsif how_search == "front"
+      User.where(['name LIKE ?', "#{term}%"])
+    elsif how_search == "back"
+      User.where(['name LIKE ?', "%#{term}"])
+    elsif how_search == "part"
+      User.where(['name LIKE ?', "%#{term}%"])
+    else
+      User.all
+    end
+  end
+
 end
